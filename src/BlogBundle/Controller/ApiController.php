@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  * Description of ApiController
  *
  * @author Rosana Pencheva <rossana.russeva@gmail.com>
- * @ Route("/api/v1/blog")
+ * @Route("/api/v1/blog")
  */
 class ApiController extends Controller {
 

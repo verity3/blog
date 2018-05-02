@@ -46,7 +46,7 @@ class BlogsComponent extends React.Component {
   
   loadPost(page){      
        $.ajax({
-            url: '/app_dev.php/check/data.json',
+            url: '/api/v1/blog/check/data.json',
              data: { 
                page: page,
              },

@@ -28,7 +28,7 @@ class ListPost extends React.Component {
       isOpen: !this.state.isOpen
     });
      $.ajax({
-            url: '/app_dev.php/show/data',
+            url: '/api/v1/blog/show/data',
              data: { 
                id: this.props.post.id,
              },
