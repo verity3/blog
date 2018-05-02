@@ -1,7 +1,7 @@
-auth:
-    resource: "@AuthBundle/Controller/"
-    type:     annotation
-    prefix:   /
+#auth:
+ #   resource: "@AuthBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
 
 blog:
     resource: "@BlogBundle/Controller/"
