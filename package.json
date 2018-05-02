@@ -1,0 +1,32 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "dependencies": {
+    "ag-grid": "^17.1.1",
+    "ag-grid-react": "^17.1.0",
+    "jquery": "2.1.0",
+    "moment": "^2.21.0",
+    "react-datepicker": "^1.4.1",
+    "react-dom-factories": "^1.0.2"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.19.0",
+    "ag-grid": "^17.1.1",
+    "ag-grid-enterprise": "^17.1.1",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap": "3.3.1",
+    "bootstrap-datepicker": "^1.8.0",
+    "jquery-ui": "^1.12.1",
+    "node-sass": "^4.9.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-truncate": "^2.3.0",
+    "sass-loader": "^7.0.1"
+  },
+  "description": "",
+  "main": "webpack.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

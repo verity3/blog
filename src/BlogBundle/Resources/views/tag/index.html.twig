@@ -1,0 +1,45 @@
+{% extends '@Blog/Layout/layout.html.twig' %}
+
+{% block title %} {{ 'Blog'|trans }} {% endblock %}
+
+
+{% block body %}
+   
+    <div class="container">
+        <section class="panel">            
+            <div class="panel-body">
+              
+                <div class="row">
+                    <div class="col-md-6 offset-md-6">
+                        <h3>{{ 'Blog Tags' }}</h3>
+                        <a class="btn btn-primary" href="{{ path('tag_create') }}">{{ 'New' }}</a>
+                        <!--Table-->              
+                        <table class="table table-striped table-condensed">  
+                            <!--Table head-->
+                            <thead>
+                                <tr>         
+                                    <th class="th-lg">Action</th>
+                                    <th class="th-lg">Name</th>
+                                </tr>
+                            </thead>
+                            <!--Table head-->
+                            <!--Table body-->
+                            <tbody>
+                                {% for post in pagination %}
+                                    <tr>
+                                        <td><a href="{{ path('tag_edit',{'id': post.secureId}) }}">{{ 'Edit' }}</a></td>
+                                        <td>{{ post.name }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <!--Table body-->
+                        </table>
+                        <div class="pagination container">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %} 
