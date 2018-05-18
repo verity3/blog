@@ -6,7 +6,10 @@ parameters:
     database_user: root
     database_password: root
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_host: smtp.gmail.com
+    mailer_user: penchevarosana@gmail.com
+    mailer_password: rosanapencheva
+    mailer_encryption: ssl
+    mail_noreplay: penchevarosana@gmail.com
+    upload_path: '%kernel.root_dir%/../web/upload'
     secret: ea57c788ff3e5dcbb921eabeca7da35c4035c2ce

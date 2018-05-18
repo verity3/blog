@@ -1,0 +1,52 @@
+{% extends '@News/Layout/layout.html.twig' %}
+
+{% block title %} {{ 'News'|trans }} {% endblock %}
+
+{% block body %}
+   
+    <div class="container">
+        <section class="panel">            
+            <div class="panel-body">
+               
+                <div class="row">
+                    <div class="col-md-6 offset-md-6">
+                        <h3>{{ 'Your news' }}</h3>
+                        <a class="btn btn-primary" href="{{ path('news_create') }}">{{ 'New' }}</a>
+                        <!--Table-->              
+                        <table class="table table-striped table-condensed">  
+                            <!--Table head-->
+                            <thead>
+                                <tr>         
+                                    <th class="th-lg">Actions</th>
+                                    <th class="th-lg">Title</th>
+                                    <th class="th-lg">Date</th>
+                                    <th class="th-lg">Active</th>
+                                </tr>
+                            </thead>
+                            <!--Table head-->
+                            <!--Table body-->
+                            <tbody>
+                                {% for post in pagination %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{path('news_publish', {'id': post.secureId})}}" class="btn btn-sm btn-default">{{'Publish'}}</a>
+                                            <a href="{{path('news_delete', {'id': post.secureId})}}" class="btn btn-sm btn-default">{{'Delete'}}</a>
+                                        </td>
+                                        <td><a href="{{path('frontend_show_post', {'id': post.secureId})}}">{{ post.title }}</a></td>
+                                        <td>{{ post.date|date('d-m-Y') }}</td>
+                                        <td>{% if post.active == 1 %}{{ 'Published' }}{% else %}{{ 'Unpublished' }}{% endif %}</td>
+                                        
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <!--Table body-->
+                        </table>
+                        <div class="pagination container">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %} 

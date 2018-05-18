@@ -1,0 +1,34 @@
+{% extends '@News/Layout/layout.html.twig' %}
+
+{% block title %} {{ 'News'|trans }} {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <section class="panel">            
+            <div class="panel-body">
+
+                <div class="row">
+                   
+                    <div class="col-md-6 offset-md-6">
+                        <h1>{{ post.title }}</h1>
+                    </div>
+                     <div class="col-md-6 offset-md-6">
+                    <p>{{ post.date|date('d M Y') }}</p>
+                     </div>
+                     <div class="col-md-12 offset-md-6">
+                        {{ post.text|raw }}
+                    </div>
+                    <tr>
+                <div class="col-md-6 offset-md-6">
+                    {% for element in post.files %}
+                       
+                          <img src="{{element.file}}" height="200" width="200"/>  
+                      
+                    {% endfor %}
+                </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %} 

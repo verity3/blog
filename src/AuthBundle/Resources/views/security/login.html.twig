@@ -1,0 +1,28 @@
+{% extends '@News/Layout/layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>{{ 'Login' }}</h1>
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+                {{ form_start(form) }}
+                {{ form_row(form._username) }}
+                {{ form_row(form._password) }}
+                <div>
+                    <a href="{{ path('user_registration') }}" class="mt-2">{{'Register '}}</a>
+                    <a href="{{ path('_system_auth_forgot_pass') }}">{{' Forgot password'}}</a>
+                </div>
+                <button type="submit" class="btn btn-success ml-1">{{ 'Login' }}<span class="fa fa-lock"></span></button>
+
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

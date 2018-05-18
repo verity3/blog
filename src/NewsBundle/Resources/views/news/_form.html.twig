@@ -1,0 +1,15 @@
+{{ form_row(form.title) }}
+{{ form_row(form.text) }}
+{{ form_label(form.date) }}
+{{ form_widget(form.date) }}   
+{{ form_label(form.files) }}
+<ul class="files" data-prototype="{{ form_widget(form.files.vars.prototype)|e('html_attr') }}">
+    {% for element in form.files %}
+        <li>
+            {{ form_widget(element.file) }}
+        </li>
+    {% endfor %}
+</ul>
+{{ form_widget(form.active) }}
+{{ form_label(form.active) }}
+{{ form_row(form.create) }}

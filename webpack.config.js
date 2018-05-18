@@ -22,10 +22,10 @@ Encore
     .addEntry('js/bootstrap', 'bootstrap/dist/js/bootstrap.js')
     .addStyleEntry('css/bootstrap', 'bootstrap/dist/css/bootstrap.min.css')   
     .addEntry('js/bootstrap-datepicker', 'bootstrap-datepicker/dist/js/bootstrap-datepicker.js')
-    .addEntry('js/initial-setup', './src/BlogBundle/Resources/public/js/initial-setups.js')
+    .addEntry('js/initial-setup', './src/NewsBundle/Resources/public/js/initial-setups.js')
     .addStyleEntry('css/bootstrap-datepicker', 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') 
-    .addEntry('js/blogs', './src/BlogBundle/Resources/public/js/blogs.js') 
-    .addStyleEntry('css/style', './src/BlogBundle/Resources/public/css/style.css') 
+    .addEntry('js/blogs', './src/NewsBundle/Resources/public/js/blogs.js') 
+    .addStyleEntry('css/style', './src/NewsBundle/Resources/public/css/style.css') 
 ;
 
 module.exports = Encore.getWebpackConfig();

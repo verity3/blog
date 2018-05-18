@@ -1,0 +1,17 @@
+{% extends 'AuthBundle::layout-mail.html.twig' %}
+
+{% block title %}Registration in news.com{% endblock title %}
+{% block footer %}
+If you haven't signed up in news.com, ignore this e-mail.
+<br/>
+
+{% endblock footer %}
+
+{% block body %}
+Dear {{ user.username }},
+<br /><br />
+Welcome to news.com. We wish you enjoyable time in the world of news opportunities.<br />
+To activate your account please click <a href="{{ url }}" target="_blank" style="text-decoration:none; color:#CC0000;">HERE</a>.
+<br /><br />
+--- Your news.com team
+{% endblock %}

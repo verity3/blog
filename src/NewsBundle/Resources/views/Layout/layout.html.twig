@@ -1,0 +1,101 @@
+{% spaceless %}
+    {% set _layout_body = block('body') %}
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="News">
+            <script src="{{ asset('builds/manifest.js') }}"></script>
+            <script src="{{ asset('builds/vendor.js') }}"></script>
+
+            {% block meta -%}
+                <meta name="classification" content="business">
+                <meta name="robots" content="noindex, nofollow">
+                {%- endblock %}
+                <title>{% block title %}News.com{% endblock %}</title>
+                {% block stylesheets %}
+                    <link href="{{ asset('builds/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+                    <link href="{{ asset('builds/css/bootstrap-datepicker.css') }}" rel="stylesheet" type="text/css" />
+                    <link href="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.7.5/css/froala_style.min.css') }}" rel="stylesheet" type="text/css" />
+                    <link href="{{ asset('builds/css/style.css') }}" rel="stylesheet" type="text/css" />              
+                    <link rel="stylesheet" href=" {{ asset('builds/js/blogs.css') }}" type="text/css" media="screen">
+                {% endblock %}
+
+            </head>
+
+            <body> 
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a class="" href="{{path('news_homepage')}}">Your news</a></li>
+                        <li class="breadcrumb-item"><a class="" href="{{path('frontend_list')}}">All news (react)</a> </li>
+                        <li class="breadcrumb-item"><a class="" href="{{path('frontend_homepage')}}">All news</a> </li>
+                            {% if is_granted('ROLE_USER') %}
+                            <li class="breadcrumb-item"><a href="{{ path('security_logout') }}">Logout</a></li>
+                            {% else %}
+                            <li class="breadcrumb-item"><a href="{{ path('security_login') }}">Login</a></li>
+                            {% endif %}
+                    </ol>
+                </nav>
+                <div class="main-content">
+                    {% for msg in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success">
+                            {{ msg }}
+                        </div>
+                    {% endfor %}
+                    {{ _layout_body|raw }}  
+                </div>
+                <div class="footer">
+                    <p class="footer-text"></p>
+                </div>
+                {% block javascripts %}
+                    <script src="{{ asset('builds/jquery.js') }}"></script>
+                    <script src="{{ asset('builds/js/initial-setup.js') }}"></script>
+                    <script src="{{ asset('builds/js/bootstrap.js') }}"></script>
+                    <script src="{{ asset('builds/js/bootstrap-datepicker.js') }}"></script>
+                    <script src="{{ asset('builds/js/blogs.js') }}"></script>
+                    <script src="{{ asset('bundles/kmsfroalaeditor/froala_editor_2.7.5/js/froala_editor.min.js') }}"></script>
+                       
+        <script lang="javascript" type="text/javascript">
+            var $collectionHolder;
+            // setup an "add a tag" link
+            var $addTagLink = $('<a href="#" class="add_tag_link">Add a file</a>');
+            var $newLinkLi = $('<li class=""></li>').append($addTagLink);
+            
+            jQuery(document).ready(function () {
+                // Get the ul that holds the collection of tags
+                $collectionHolder = $('ul.files');
+                // add the "add a tag" anchor and li to the tags ul
+                $collectionHolder.append($newLinkLi);
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
+                $addTagLink.on('click', function (e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+                    // add a new tag form (see next code block)
+                    addTagForm($collectionHolder, $newLinkLi);
+                });
+            });
+            function addTagForm($collectionHolder, $newLinkLi) {
+                // Get the data-prototype explained earlier
+                var prototype = $collectionHolder.data('prototype');
+                // get the new index
+                var index = $collectionHolder.data('index');
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm = prototype.replace(/__name__/g, index);
+                // increase the index with one for the next item
+                $collectionHolder.data('index', index + 1);
+                // Display the form in the page in an li, before the "Add a tag" link li
+                var $newFormLi = $('<li class=""></li>').append(newForm);
+                $newLinkLi.before($newFormLi);
+            }
+        </script>  
+                {% endblock %}
+            </body>
+
+        </html>
+        {% endspaceless %}
