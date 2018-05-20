@@ -9,22 +9,35 @@ security:
     providers:
         our_users:
             entity: { class: AuthBundle\Entity\User, property: email }
+       # in_memory:
+        #    memory:
+         #       users:
+          #          admin:
+           #             password: root
+            #            roles: 'ROLE_USER'    
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            logout_on_user_change: true
             anonymous: ~
-       #     provider: our_db_provider
+       #     provider: in_memory
             guard:
                 authenticators:
                     - auth.security.login_form_authenticator
             logout:
                 path: /logout
+                target: /
             form_login:
                 login_path: /login
-                check_path: /login    
+                check_path: /login 
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 300
+                path:     /
+                remember_me_parameter: _remember_me
         
 
     access_control:

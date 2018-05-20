@@ -32,10 +32,8 @@ class FrontendController extends Controller {
                 ->getQuery()
                 ->getResult();
 
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($posts, $request->get('page', 1), 10);
         return[
-            'pagination' => $pagination,
+            'posts' => $posts,
         ];
     }
 
@@ -43,7 +41,7 @@ class FrontendController extends Controller {
      * @Route("/show/{id}", name="frontend_show_post")
      * @Template()
      */
-    public function showAction($id) {//dump($url);exit;
+    public function showAction($id) {
         $post = $this->getDoctrine()
                 ->getRepository('NewsBundle:NewsPost')
                 ->findOneBySecureId($id);

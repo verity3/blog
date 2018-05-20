@@ -10,6 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use NewsBundle\Form\NewsType;
 use NewsBundle\Entity\NewsPost;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * 
@@ -127,6 +129,35 @@ class NewsController extends Controller {
         }
         $url = $this->generateUrl('news_homepage');
         return $this->redirect($url);
+    }
+
+    /**
+     * @Route("/download/{id}/news", name="news_download")
+     * @Method("GET")
+     */
+    public function pdfAction(Request $request, $id) {
+        $post = $this->getDoctrine()
+                ->getRepository('NewsBundle:NewsPost')
+                ->findOneBySecureId($id);
+        if ($post) {
+            $html = $this->renderView('NewsBundle:frontend:pdf.html.twig', array(
+                'post' => $post,
+                'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
+            ));
+
+            $filename = $post->getTitle() . date("YmdHs") . '.pdf';
+
+            return new Response(
+                    $this->get('knp_snappy.pdf')->getOutputFromHtml($html), 200, array(
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="' . $filename . '"'
+                    )
+            );
+        } else {
+            $this->addFlash('success', 'The news does not exist!');
+            $url = $this->generateUrl('news_homepage');
+            return $this->redirect($url);
+        }
     }
 
 }

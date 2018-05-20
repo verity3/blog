@@ -1,0 +1,66 @@
+{% spaceless %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="">
+            <meta name="author" content="News">
+            <script src="{{ base_dir ~ asset('builds/manifest.js') }}"></script>
+            <script src="{{ base_dir ~ asset('builds/vendor.js') }}"></script>
+
+            {% block meta -%}
+                <meta name="classification" content="business">
+                <meta name="robots" content="noindex, nofollow">
+                {%- endblock %}
+                <title>{% block title %}News.com{% endblock %}</title>
+                {% block stylesheets %}
+                    <link href="{{ base_dir ~ asset('builds/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+                    <link href="{{ base_dir ~ asset('builds/css/bootstrap-datepicker.css') }}" rel="stylesheet" type="text/css" />
+                    <link href="{{ base_dir ~ asset('bundles/kmsfroalaeditor/froala_editor_2.7.5/css/froala_style.min.css') }}" rel="stylesheet" type="text/css" />
+                    <link href="{{ base_dir ~ asset('builds/css/style.css') }}" rel="stylesheet" type="text/css" />              
+                    <link rel="stylesheet" href=" {{base_dir ~ asset('builds/js/blogs.css') }}" type="text/css" media="screen">
+                {% endblock %}
+
+            </head>
+
+            <body> 
+
+                <div class="main-content">
+
+
+                    <div class="container">
+                        <section class="panel">            
+                            <div class="panel-body">
+
+                                <div class="row">
+
+                                    <div class="col-md-6 offset-md-6">
+                                        <h1>{{ post.title }}</h1>
+                                    </div>
+                                    <div class="col-md-6 offset-md-6">                       
+                                        <p>{{ post.date|date('d M Y') }}</p>
+                                    </div>
+                                    <div class="col-md-12 offset-md-6">
+                                        {{ post.text|raw }}
+                                    </div>
+                                    <div class="col-md-6 offset-md-6">
+                                        {% for element in post.files %}
+                                            <img src="{{base_dir ~ element.file[2:]}}" height="200" width="200"/>                                         {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+                <div class="footer">
+                    <p class="footer-text"></p>
+                </div>
+
+            </body>
+
+        </html>
+        {% endspaceless %}

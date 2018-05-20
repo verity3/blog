@@ -13,11 +13,13 @@
                 {{ form_start(form) }}
                 {{ form_row(form._username) }}
                 {{ form_row(form._password) }}
+                <input type="checkbox" id="remember_me" name="_remember_me" checked />
+                <label for="remember_me">Keep me logged in</label>
                 <div>
                     <a href="{{ path('user_registration') }}" class="mt-2">{{'Register '}}</a>
                     <a href="{{ path('_system_auth_forgot_pass') }}">{{' Forgot password'}}</a>
                 </div>
-                <button type="submit" class="btn btn-success ml-1">{{ 'Login' }}<span class="fa fa-lock"></span></button>
+                <button type="submit" id="loginSubmit" name="_submit" class="btn btn-success ml-1">{{ 'Login' }}<span class="fa fa-lock"></span></button>
 
 
                 {{ form_end(form) }}

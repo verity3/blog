@@ -79,3 +79,10 @@ doctrine_migrations:
     table_name: migrations
     name: Application Migrations    
     
+knp_snappy:
+    pdf:
+        enabled:    true
+    #    binary:     /usr/local/bin/wkhtmltopdf 
+        options:    []    
+    temporary_folder: "%kernel.cache_dir%/snappy"    
+    

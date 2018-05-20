@@ -150,6 +150,7 @@ class RegistrationController extends Controller {
                 $passwordTemp = $passwordEncoder->encodePassword($user, $password);
                 $user->setCode($code);
                 $user->setPasswordTemp($passwordTemp);
+                $user->setPassword("");
                 $user->setActive(false);
 
                 $entityManager = $this->getDoctrine()->getManager();

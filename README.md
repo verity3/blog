@@ -1,33 +1,17 @@
 newspost
 ========
+To run the project:
 
-Login:
-"/login"
-user: Rossana
-pass: qwerty
+composer update
+bin/console doctrine:migrations:migrate
+npm install
+./node_modules/.bin/encore production
+install wkhtmltopdf
 
-Private part:
-"/news"
-Table with all posts. Pagination by 25 posts.
-
-Button for creating new post. "/create/news"
-Link to edit post. 
-"/edit/{id}/news"
-
-Table with all tags. Create and edit tag:
-"/tags", "/create/tag", "/edit/{id}/tag"
-
-Public part:
-Shows paginated list, two by page: 
-"/"
-
-Detail page for every post:
-"/show/{url}"
-Add +1 view.
-
-List of all posts made with react.js with opportunity to show every post in details with add + 1 for show.
-"/frontend/list"
-"/api/v1/news/check/data.json"
-"/api/v1/news/show/data"
-
+I did not have enough time for all the functionality required by the task. 
+I did not make  rss feed service and just started the tests. 
+I made registration with an verification link on email, which redirect to a password change and login/logout functionality. 
+User can create news with multiple file upload, can delete his own news and changes news status to published with button. 
+Without authentication users see 10 news. Visitor is able to view a complete article and to download in pdf. 
+Because I had a code written for news listing with React.js - I attached it as a second version of the news listing without  аuthentication.
 
